@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Axel Islas Ruelas — Full-Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0b0712;
+    --bg-2: #120b1e;
+    --surface: #171025;
+    --surface-2: #1d1530;
+    --border: rgba(255,255,255,0.09);
+    --text: #f3eefc;
+    --text-muted: #a79cc2;
+    --violet: #8b5cf6;
+    --violet-2: #a78bfa;
+    --pink: #e879c9;
+    --grad: linear-gradient(135deg, #8b5cf6, #d946ef);
+    --radius-lg: 18px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --heading: 'Poppins', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:var(--heading); letter-spacing:-0.01em;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--violet-2); outline-offset:3px;
+  }
+
+  .glow{
+    position:absolute; border-radius:50%; filter:blur(90px); opacity:.35; pointer-events:none; z-index:0;
+  }
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,7,18,0.75); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:18px 32px;}
+  .logo{font-family:var(--heading); font-weight:700; font-size:1.15rem;}
+  .logo span{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .nav-links{display:flex; gap:34px; font-size:14.5px; font-weight:500;}
+  .nav-links a{color:var(--text-muted); transition:color .2s;}
+  .nav-links a:hover{color:var(--text);}
+  .nav-cta{
+    background:var(--grad); padding:9px 20px; border-radius:100px; font-size:14px; font-weight:600;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative; padding:100px 0 90px; text-align:center; overflow:hidden;}
+  .hero .glow.g1{width:480px; height:480px; background:var(--violet); top:-160px; left:50%; transform:translateX(-60%);}
+  .hero .glow.g2{width:380px; height:380px; background:var(--pink); top:120px; left:60%;}
+  .hero-inner{position:relative; z-index:1; max-width:720px; margin:0 auto;}
+  .badge{
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--border); background:var(--surface);
+    padding:7px 16px; border-radius:100px; font-size:13px; color:var(--text-muted); margin-bottom:28px;
+  }
+  .badge .dot{width:7px; height:7px; border-radius:50%; background:#4ade80; box-shadow:0 0 0 3px rgba(74,222,128,.18);}
+  .hero h1{font-size:clamp(2.1rem, 5.5vw, 3.2rem); font-weight:700; margin-bottom:10px;}
+  .hero h1 .name{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .hero .role{font-size:1.3rem; font-weight:600; color:var(--violet-2); margin-bottom:22px;}
+  .hero p.lead{color:var(--text-muted); font-size:1.02rem; max-width:56ch; margin:0 auto 34px;}
+  .btn-row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:56px;}
+  .btn{
+    padding:13px 28px; border-radius:100px; font-weight:600; font-size:14.5px;
+    display:inline-flex; align-items:center; gap:8px; transition:transform .15s, box-shadow .15s;
+  }
+  .btn-primary{background:var(--grad); color:#fff; box-shadow:0 8px 24px -8px rgba(139,92,246,.6);}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-outline{border:1.5px solid var(--border); color:var(--text);}
+  .btn-outline:hover{border-color:var(--violet-2); color:var(--violet-2);}
+
+  .stat-row{display:flex; justify-content:center; gap:48px; flex-wrap:wrap;}
+  .stat{text-align:center;}
+  .stat .num{font-family:var(--heading); font-size:1.7rem; font-weight:700; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .stat .lbl{font-size:12.5px; color:var(--text-muted); margin-top:2px;}
+
+  /* ---------- Section shared ---------- */
+  section{padding:90px 0;}
+  .eyebrow{
+    display:block; text-align:center; font-size:13px; font-weight:600; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--violet-2); margin-bottom:10px;
+  }
+  h2.section-title{text-align:center; font-size:clamp(1.6rem,3.5vw,2.1rem); font-weight:700; margin-bottom:16px;}
+  p.section-sub{text-align:center; color:var(--text-muted); max-width:56ch; margin:0 auto 52px; font-size:.98rem;}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center;}
+  .about-grid p{color:var(--text-muted); margin-bottom:16px; font-size:.98rem;}
+  .about-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:28px; position:relative; overflow:hidden;
+  }
+  .about-card::before{
+    content:""; position:absolute; inset:0; background:var(--grad); opacity:.08;
+  }
+  .about-card .row{display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--border); font-size:14px; position:relative;}
+  .about-card .row:last-child{border-bottom:none;}
+  .about-card .row .k{color:var(--text-muted);}
+  .about-card .row .v{font-weight:600;}
+
+  /* ---------- Skills ---------- */
+  .skills-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;}
+  .skill-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:24px;
+    transition:border-color .2s, transform .2s;
+  }
+  .skill-card:hover{border-color:var(--violet); transform:translateY(-3px);}
+  .skill-card h3{font-size:1.02rem; margin-bottom:14px; display:flex; align-items:center; gap:9px;}
+  .skill-card h3 .ic{width:9px; height:9px; border-radius:3px; background:var(--grad); display:inline-block;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{
+    font-size:12.5px; padding:5px 12px; border-radius:100px; border:1px solid var(--border); color:var(--text-muted);
+  }
+
+  /* ---------- Timeline ---------- */
+  .timeline{max-width:680px; margin:0 auto;}
+  .tl-item{display:grid; grid-template-columns:52px 1fr; gap:20px; position:relative; padding-bottom:36px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-dot{
+    width:52px; height:52px; border-radius:50%; background:var(--grad);
+    display:flex; align-items:center; justify-content:center; font-family:var(--heading);
+    font-weight:700; font-size:12.5px; color:#fff; position:relative; z-index:1;
+  }
+  .tl-item:not(:last-child) .tl-dot::after{
+    content:""; position:absolute; top:52px; left:50%; width:2px; height:calc(100% + 4px);
+    background:var(--border); transform:translateX(-50%);
+  }
+  .tl-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:20px 22px;
+  }
+  .tl-card h4{font-size:1.02rem; margin-bottom:3px;}
+  .tl-card .sub{color:var(--violet-2); font-size:13px; font-weight:600; margin-bottom:10px;}
+  .tl-card p{color:var(--text-muted); font-size:.92rem;}
+
+  /* ---------- Projects ---------- */
+  .proj-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:26px;}
+  .proj-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden;
+    display:flex; flex-direction:column; transition:transform .2s, border-color .2s;
+  }
+  .proj-card:hover{transform:translateY(-4px); border-color:var(--violet);}
+  .proj-thumb{
+    height:150px; background:var(--grad); position:relative; display:flex; align-items:center; justify-content:center;
+    font-family:var(--heading); font-weight:700; color:rgba(255,255,255,.85); font-size:13px; letter-spacing:.04em;
+  }
+  .proj-thumb::before{
+    content:""; position:absolute; inset:0;
+    background-image:radial-gradient(circle at 20% 30%, rgba(255,255,255,.18) 0, transparent 40%),
+                      radial-gradient(circle at 80% 70%, rgba(255,255,255,.14) 0, transparent 40%);
+  }
+  .proj-body{padding:24px; display:flex; flex-direction:column; flex:1;}
+  .proj-body .period{font-size:12px; color:var(--violet-2); font-weight:600; margin-bottom:6px;}
+  .proj-body h3{font-size:1.15rem; margin-bottom:10px;}
+  .proj-body p{color:var(--text-muted); font-size:.9rem; margin-bottom:16px;}
+  .proj-body ul{list-style:none; margin-bottom:18px;}
+  .proj-body ul li{position:relative; padding-left:16px; font-size:.86rem; color:var(--text-muted); margin-bottom:6px;}
+  .proj-body ul li::before{content:"→"; position:absolute; left:0; color:var(--violet-2);}
+  .tag-row.small{margin-bottom:18px;}
+  .proj-body .btn{margin-top:auto; align-self:flex-start;}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+  .form-card, .info-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:32px;
+  }
+  .form-card h3, .info-card h3{margin-bottom:20px; font-size:1.15rem;}
+  .field-group{margin-bottom:18px;}
+  .field-group label{display:block; font-size:13px; color:var(--text-muted); margin-bottom:7px; font-weight:500;}
+  .field-group input, .field-group textarea{
+    width:100%; background:var(--bg-2); border:1px solid var(--border); border-radius:var(--radius-sm);
+    padding:11px 14px; color:var(--text); font-family:var(--body); font-size:14px;
+  }
+  .field-group input:focus, .field-group textarea:focus{border-color:var(--violet);}
+  .field-group textarea{resize:vertical; min-height:100px;}
+  .form-card .btn{width:100%; justify-content:center; border:none; cursor:pointer; font-family:var(--body);}
+
+  .info-card p{color:var(--text-muted); font-size:.92rem; margin-bottom:22px;}
+  .info-row{display:flex; align-items:center; gap:12px; margin-bottom:16px; font-size:.92rem;}
+  .info-row .ic{
+    width:36px; height:36px; border-radius:50%; background:var(--bg-2); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:15px;
+  }
+  .social-row{display:flex; gap:10px; margin-top:24px;}
+  .social-row a{
+    width:38px; height:38px; border-radius:50%; border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center; font-size:14px; transition:border-color .2s, color .2s;
+    color:var(--text-muted);
+  }
+  .social-row a:hover{border-color:var(--violet); color:var(--violet-2);}
+
+  footer{border-top:1px solid var(--border); padding:32px 0; text-align:center; color:var(--text-muted); font-size:13px;}
+
+  @media (max-width:820px){
+    .nav-links{display:none;}
+    .about-grid, .contact-grid{grid-template-columns:1fr;}
+    .skills-grid{grid-template-columns:1fr;}
+    .proj-grid{grid-template-columns:1fr;}
+    .stat-row{gap:30px;}
+  }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">axel<span>.dev</span></div>
+    <div class="nav-links">
+      <a href="#about">Sobre mí</a>
+      <a href="#skills">Habilidades</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a class="nav-cta" href="#contacto">Contactar</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="wrap hero-inner">
+    <h1>¡Hola! Soy <span class="name">Axel</span></h1>
+    <div class="role">Full-Stack Developer</div>
+    <p class="lead">
+      Estudiante de TSU en Desarrollo de Software Multiplataforma, enfocado en construir
+      sistemas web completos: desde el diseño de la base de datos hasta la interfaz que usa el usuario final.
+    </p>
+    <div class="btn-row">
+      <a href="#proyectos" class="btn btn-primary">Ver mis proyectos</a>
+      <a href="#contacto" class="btn btn-outline">Contactar</a>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><div class="num">2</div><div class="lbl">Sistemas completos</div></div>
+      <div class="stat"><div class="num">6°</div><div class="lbl">Cuatrimestre</div></div>
+      <div class="stat"><div class="num">12+</div><div class="lbl">Triggers &amp; SPs escritos</div></div>
+      <div class="stat"><div class="num">SOA</div><div class="lbl">Arquitectura de referencia</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="eyebrow" style="text-align:left;">Sobre mí</span>
+      <h2 class="section-title" style="text-align:left;">Construyo sistemas, no solo pantallas</h2>
+      <p>
+        Soy estudiante de la Universidad Tecnológica de Tijuana, actualmente cursando el sexto
+        cuatrimestre y en periodo de estadías profesionales. Me enfoco en la parte backend y de bases
+        de datos: modelado relacional, procedimientos almacenados, triggers y arquitecturas orientadas
+        a servicios (SOA).
+      </p>
+      <p>
+        Mi proyecto principal, MermaX, nació de un problema real de la industria maquiladora en Tijuana:
+        el control de mermas en líneas de ensamblaje. Diseñar ese sistema de principio a fin —
+        base de datos, API y trazabilidad completa — es lo que más disfruto de desarrollar software.
+      </p>
+      <p>
+        Fuera del código, me interesa seguir profundizando en frontend y en buenas prácticas de
+        arquitectura de software conforme avanzo en mis estadías.
+      </p>
+    </div>
+    <div class="about-card">
+      <div class="row"><span class="k">Ubicación</span><span class="v">Tijuana, B.C., México</span></div>
+      <div class="row"><span class="k">Formación</span><span class="v">TSU Des. de Software</span></div>
+      <div class="row"><span class="k">Institución</span><span class="v">UT Tijuana — 5C</span></div>
+      <div class="row"><span class="k">Enfoque</span><span class="v">Backend &amp; Bases de Datos</span></div>
+      <div class="row"><span class="k">Idiomas</span><span class="v">Español, Inglés (B1-B2)</span></div>
+      <div class="row"><span class="k">Estado</span><span class="v">Disponible</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <span class="eyebrow">Habilidades &amp; Tecnologías</span>
+    <h2 class="section-title">Con qué construyo</h2>
+    <p class="section-sub">Un stack orientado a sistemas backend robustos, con bases de datos relacionales en el centro.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3><span class="ic"></span>Backend</h3>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">Django</span><span class="tag">Django REST Framework</span>
+          <span class="tag">Arquitectura SOA</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3><span class="ic"></span>Bases de datos</h3>
+        <div class="tag-row">
+          <span class="tag">MySQL</span><span class="tag">PostgreSQL</span><span class="tag">Procedimientos almacenados</span>
+          <span class="tag">Triggers</span><span class="tag">Modelado ER</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3><span class="ic"></span>Frontend &amp; herramientas</h3>
+        <div class="tag-row">
+          <span class="tag">JavaScript</span><span class="tag">HTML / CSS</span><span class="tag">Bootstrap 5</span>
+          <span class="tag">Chart.js</span><span class="tag">Git / GitHub</span><span class="tag">Scrum</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trayectoria">
+  <div class="wrap">
+    <span class="eyebrow">Trayectoria</span>
+    <h2 class="section-title">Cómo he avanzado</h2>
+    <p class="section-sub">Formación y proyectos en paralelo, con enfoque creciente en sistemas de producción.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">2026</div>
+        <div class="tl-card">
+          <h4>SCTM / MermaX — Desarrollador backend</h4>
+          <div class="sub">Estadías profesionales · UT Tijuana</div>
+          <p>Diseño y desarrollo de un sistema de trazabilidad de mermas bajo arquitectura SOA,
+          con foco en la base de datos, procedimientos almacenados y el módulo de discrepancias.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">2025</div>
+        <div class="tl-card">
+          <h4>OnePet — Desarrollo full-stack</h4>
+          <div class="sub">Proyecto académico</div>
+          <p>Sistema de gestión para un hospital veterinario: citas, hospitalización y pagos,
+          cubriendo el ciclo completo de atención al paciente.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">Hoy</div>
+        <div class="tl-card">
+          <h4>Sexto cuatrimestre — Estadías profesionales</h4>
+          <div class="sub">TSU en Desarrollo de Software Multiplataforma</div>
+          <p>Cerrando la tesina de MermaX mientras continúo desarrollando nuevos módulos del sistema.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proyectos">
+  <div class="wrap">
+    <span class="eyebrow">Proyectos</span>
+    <h2 class="section-title">Trabajo reciente</h2>
+    <p class="section-sub">Los dos sistemas en los que más he desarrollado: desde el modelo de datos hasta la interfaz.</p>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-thumb">SCTM · MermaX</div>
+        <div class="proj-body">
+          <div class="period">2026 — Actualidad</div>
+          <h3>Sistema de Control y Trazabilidad de Mermas</h3>
+          <p>Automatiza el registro y seguimiento de mermas en una línea de ensamblaje de televisores,
+          con trazabilidad completa por folio y bitácora de auditoría.</p>
+          <div class="tag-row small">
+            <span class="tag">Django REST Framework</span><span class="tag">MySQL</span><span class="tag">SOA</span>
+          </div>
+          <ul>
+            <li>Módulo de resolución de discrepancias</li>
+            <li>Dashboards por rol con Chart.js</li>
+            <li>Triggers de auditoría en 12 tablas</li>
+          </ul>
+          <a href="#" class="btn btn-outline">Ver detalles →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-thumb">OnePet</div>
+        <div class="proj-body">
+          <div class="period">2025 — 2026</div>
+          <h3>Sistema de Gestión de Hospital de Mascotas</h3>
+          <p>Aplicación para la administración integral de un hospital veterinario, cubriendo todo
+          el ciclo de atención al paciente.</p>
+          <div class="tag-row small">
+            <span class="tag">Django</span><span class="tag">PostgreSQL</span><span class="tag">xhtml2pdf</span>
+          </div>
+          <ul>
+            <li>Citas con paginación y ficha de paciente</li>
+            <li>Hospitalización con validación de signos vitales</li>
+            <li>Pagos y recibos generados en PDF</li>
+          </ul>
+          <a href="#" class="btn btn-outline">Ver detalles →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <span class="eyebrow">Contacto</span>
+    <h2 class="section-title">Trabajemos juntos</h2>
+    <p class="section-sub">Busco una posición de prácticas profesionales donde seguir construyendo sistemas con impacto real.</p>
+
+    <div class="contact-grid">
+      <div class="form-card">
+        <h3>Envíame un mensaje</h3>
+        <form id="contact-form">
+          <div class="field-group">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="field-group">
+            <label for="email">Correo</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="field-group">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+        </form>
+      </div>
+
+      <div class="info-card">
+        <h3>Información de contacto</h3>
+        <p>También puedes escribirme directamente por correo o teléfono, o encontrarme en mis redes.</p>
+        <div class="info-row"><span class="ic">✉</span> axel216ir@gmail.com</div>
+        <div class="info-row"><span class="ic">☎</span> (664) 558 9182</div>
+        <div class="info-row"><span class="ic">📍</span> Tijuana, Baja California, México</div>
+        <div class="social-row">
+          <a href="mailto:axel216ir@gmail.com" title="Correo">✉</a>
+          <a href="#" title="GitHub">GH</a>
+          <a href="#" title="LinkedIn">in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Axel Santiago Islas Ruelas · Universidad Tecnológica de Tijuana · Grupo 5C</div>
+</footer>
+
+<script>
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const subject = encodeURIComponent('Contacto desde portafolio — ' + name);
+    const body = encodeURIComponent(message + '\n\nCorreo de contacto: ' + email);
+    window.location.href = 'mailto:axel216ir@gmail.com?subject=' + subject + '&body=' + body;
+  });
+</script>
+
+</body>
+</html>
