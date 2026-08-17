@@ -94,8 +94,8 @@
       <div class="skill-card">
         <h3><span class="ic"></span>Bases de datos</h3>
         <div class="tag-row">
-          <span class="tag">MySQL</span><span class="tag">PostgreSQL</span><span class="tag">Procedimientos almacenados</span>
-          <span class="tag">Triggers</span><span class="tag">Modelado ER</span>
+          <span class="tag">MySQL</span><span class="tag">Procedimientos almacenados</span>
+          <span class="tag">Triggers</span><span class="tag">Modelado ER</span><span class="tag">Diccionarios de datos</span>
         </div>
       </div>
       <div class="skill-card">
@@ -129,7 +129,7 @@
         <div class="tl-card">
           <h4>OnePet — Desarrollo full-stack</h4>
           <div class="sub">Proyecto académico</div>
-          <p>Sistema de gestión para un hospital veterinario: citas, hospitalización y pagos,
+          <p>Sistema de gestión para un hospital veterinario: citas, hospitalización y recibos de pago,
           cubriendo el ciclo completo de atención al paciente.</p>
         </div>
       </div>
@@ -157,7 +157,7 @@
           <ul>
             <li>Módulo de resolución de discrepancias</li>
             <li>Dashboards por rol con Chart.js</li>
-            <li>Triggers de auditoría en 12 tablas</li>
+            <li>Triggers para el registro de mermas</li>
           </ul>
           <button class="btn btn-outline" onclick="openModal('mermax')">Ver detalles <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span></button>
         </div>
@@ -174,9 +174,9 @@
             <span class="tag">Django</span><span class="tag">Supabase (PostgreSQL)</span>
           </div>
           <ul>
-            <li>Citas con paginación y ficha de paciente</li>
+            <li>Citas con paginación y perfil de paciente</li>
             <li>Hospitalización con validación de signos vitales</li>
-            <li>Pagos y recibos generados en PDF</li>
+            <li>Recibos de Pago y reportes generados en PDF</li>
           </ul>
           <button class="btn btn-outline" onclick="openModal('onepet')">Ver detalles <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span></span></button>
         </div>
@@ -283,7 +283,7 @@
       <div class="modal-spec-grid">
         <div><span class="label">Rol</span><span class="value">Desarrollo full-stack</span></div>
         <div><span class="label">Arquitectura</span><span class="value">Monolito Django</span></div>
-        <div><span class="label">Stack</span><span class="value">Django, PostgreSQL</span></div>
+        <div><span class="label">Stack</span><span class="value">Django, Supabase (PostgreSQL)</span></div>
         <div><span class="label">Alcance</span><span class="value">Ciclo completo de atención</span></div>
       </div>
 
@@ -297,16 +297,16 @@
       <ul>
         <li>Gestión de citas con paginación y vistas de detalle de dueño / mascota</li>
         <li>Hospitalización con registro de signos vitales y validación de rangos clínicos</li>
-        <li>Módulo de pagos y generación de recibos en PDF</li>
+        <li>Módulo de pagos y generación de reportes en PDF</li>
         <li>Dashboards por rol para consulta y reportes</li>
       </ul>
 
       <h4>Capturas</h4>
       <div class="shots-grid">
-        <div class="shot-placeholder">Captura — Gestión de citas</div>
-        <div class="shot-placeholder">Captura — Hospitalización</div>
-        <div class="shot-placeholder">Captura — Recibo en PDF</div>
-        <div class="shot-placeholder">Captura — Dashboard</div>
+        <img class="shot-placeholder" src="static/img/onepet01.png" alt="login onepet" onclick="openLightbox('static/img/onepet01.png')" style="object-fit: cover; width: 100%">
+        <img class="shot-placeholder" src="static/img/onepet02.png" alt="registro onepet" onclick="openLightbox('static/img/onepet02.png')" style="object-fit: cover; width: 100%">
+        <img class="shot-placeholder" src="static/img/onepet03.png" alt="dashboard onepet" onclick="openLightbox('static/img/onepet03.png')" style="object-fit: cover; width: 100%">
+        <img class="shot-placeholder" src="static/img/onepet04.png" alt="reportes onepet" onclick="openLightbox('static/img/onepet04.png')" style="object-fit: cover; width: 100%">
       </div>
 
       <div class="modal-actions">
